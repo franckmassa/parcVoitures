@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des voitures{% endblock %}
+
+{% block monTitre %}Liste des voitures{% endblock %}
+{% block body %}
+
+<div class="row no-gutters">
+    {% for voiture in voitures %}
+    <div class="col-12 col-lg-6 p-1">
+        <div class="card mb-3">
+            <div class="row no-gutters align-items-center p-2">
+                <div class="col-12 col-md-4">
+                    <img src="{{asset('images/' ~ voiture.modele.image)}}" class="card-img">
+                </div>
+                <div class="col">
+                    <div class="card-body">
+                        <h5 class="card-title">{{voiture.immatriculation}}</h5>
+                        <p class="card-text">
+                            <div>Marque : {{voiture.modele.marque.libelle}}</div>
+                            <div>Modele : {{voiture.modele.libelle}} - PM : {{voiture.modele.prixMoyen}}</div>
+                            <div>Nombre de porte : {{voiture.nbPortes}}</div>
+                            <div>Année : {{voiture.annee}}</div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
