@@ -5,6 +5,21 @@
 {% block monTitre %}Liste des voitures{% endblock %}
 {% block body %}
 
+{{form_start(form)}}
+<div class="row no-gutters align-items-center text-center">
+    <div class="col">
+        {{form_row(form.minAnnee)}}
+    </div>
+    <div class="col">
+        {{form_row(form.maxAnnee)}}
+    </div>
+    <div class="col-2">
+        <input type="submit" value="Rechercher" class="btn btn-info">
+    </div>
+</div>
+
+{{form_end(form)}}
+
 <div class="row no-gutters">
     {% for voiture in voitures %}
     <div class="col-12 col-lg-6 p-1">
