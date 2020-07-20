@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Voiture;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Voiture|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,9 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+    public function findAllWithPagination() : Query{
+        return $this->createQueryBuilder('v')->getQuery();
+    }
     // /**
     //  * @return Voiture[] Returns an array of Voiture objects
     //  */
