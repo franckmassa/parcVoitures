@@ -17,8 +17,9 @@
         <input type="submit" value="Rechercher" class="btn btn-info">
     </div>
 </div>
-
 {{form_end(form)}}
+
+<a href="" class="d-block btn btn-success">Ajouter</a>
 
 <div class="row no-gutters">
     {% for voiture in voitures %}
@@ -32,15 +33,21 @@
                     <div class="card-body">
                         <h5 class="card-title">{{voiture.immatriculation}}</h5>
                         <p class="card-text">
-                            <div>Marque : {{voiture.modele.marque.libelle}}</div>
-                            <div>Modele : {{voiture.modele.libelle}} - PM : {{voiture.modele.prixMoyen}}</div>
-                            <div>Nombre de porte : {{voiture.nbPortes}}</div>
-                            <div>Année : {{voiture.annee}}</div>
+                        <div>Marque : {{voiture.modele.marque.libelle}}</div>
+                        <div>Modele : {{voiture.modele.libelle}} - PM : {{voiture.modele.prixMoyen}}</div>
+                        <div>Nombre de porte : {{voiture.nbPortes}}</div>
+                        <div>Année : {{voiture.annee}}</div>
                         </p>
                     </div>
                 </div>
             </div>
-        </div>   
+            {% if admin %}
+            <div class="row no-gutters ">
+                <a href="" class="col btn btn-warning">Modifier</a>
+                <a href="" class="col btn btn-danger">Supprimer</a>
+            </div>
+            {% endif %}
+        </div>
     </div>
     {% endfor %}
 </div>
