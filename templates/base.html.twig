@@ -21,21 +21,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path("accueil")}}">Accueil</a>
                 </li>
+
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{path("voitures")}}">Voitures</a>
                 </li>
+                {% endif %}
+                
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{path("admin")}}">Admin</a>
                 </li>
+                {% endif %}
+
+                {# Si l'utilisateur n'est pas connecté #}
+                {% if not app.user %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{path("inscription")}}">inscription</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{path("login")}}">Login</a>
                 </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{path("logout")}}">Deconnexion</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
