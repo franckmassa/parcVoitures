@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class GlobalController extends AbstractController
@@ -36,13 +37,28 @@ class GlobalController extends AbstractController
             $utilisateur->setRoles('ROLE_USER');
             $EntityManager->persist($utilisateur);
             $EntityManager->flush();
-            // $this->$addFlash('success', "Vous êtes bien inscrit");
             return $this->redirectToRoute('accueil');
         }
 
         return $this->render('global/inscription.html.twig', [
             "form" => $form->createView(),
-        ]);
-            
+        ]);      
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(AuthenticationUtils $util){
+        return $this->render('global/login.html.twig',[
+            "lastUsername" => $util->getLastUsername(),
+            "error" => $util->getLastUsername()
+        ] );
+    }
+
+     /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout(){
+        
     }
 }
